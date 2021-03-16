@@ -21,26 +21,28 @@ Doel van de opdracht is om deze handmatige actie om te zetten naar een for loop.
     - voeg een parameter toe aan de pipeline
         1. schema 
         2. tabel
-    - plaats een copydata op het canvas ```cd_alwt_stg```
+    - plaats een copydata op het canvas ```cd_alwt_adls```
     - selecteer bij de srouce de dataset dat we net aangemaakt hebben en geeft de paremeters van de pipeline door aan de dataset.
 
 - Maak een nieuwe pipeline ``` pl_awlt_stg```
     - voeg een loopup activiteit toe
         - laat de lookup een een Query uitvoeren 
+
 ``` sql
 select 
-	o.name
+	o.name AS table_name
+,   s.name AS schema_name
 from 
 	sys.objects o
 	inner join sys.schemas s
 		on o.schema_id = s.schema_id
 where 1=1
 and o.[type] = 'U'
-and s.name = 'SalesLT' 
+and s.name <> 'dbo'
 
 ```
 
 - voeg een ForEach toe aan het canvas
-    - Laat deze foreach lopen over de output van de lookupt.
+    - Laat deze foreach lopen over de output van de lookup.
     - Klik de activiteit in de foreach open. 
-        - voeg hier een execute pipeline toe ```pl_awlt_adls_object``` een geef deze de juiste parameters mee voor het uitvoeren van de pipeline.
+        - voeg hier een execute pipeline toe ```pl_awlt_adls_object``` een geef deze de juiste foreach item as parameters mee voor het uitvoeren van de pipeline.
