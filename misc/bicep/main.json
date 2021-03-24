@@ -1,0 +1,156 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "pUser": {
+      "type": "string",
+      "defaultValue": "ppronk"
+    },
+    "keysPermissions": {
+      "type": "array",
+      "metadata": {
+        "description": "Specifies the permissions to keys in the vault. Valid values are: all, encrypt, decrypt, wrapKey, unwrapKey, sign, verify, get, list, create, update, import, delete, backup, restore, recover, and purge."
+      },
+      "defaultValue": [
+        "list",
+        "get"
+      ]
+    },
+    "secretsPermissions": {
+      "type": "array",
+      "metadata": {
+        "description": "Specifies the permissions to secrets in the vault. Valid values are: all, get, list, set, delete, backup, restore, recover, and purge."
+      },
+      "defaultValue": [
+        "list",
+        "get"
+      ]
+    },
+    "sercertNameSQLsa": {
+      "type": "string",
+      "defaultValue": "superSecretPassword"
+    },
+    "sercertValueSQLsa": {
+      "type": "secureString",
+      "defaultValue": "GkiVkXRPl9OyL8LCmTFKDeHKutKFV6wKE7BCrxleipR5NsbEWiTGT5Z98LEv7lGL"
+    }
+  },
+  "functions": [],
+  "variables": {
+    "vProjectName": "[format('sdla2021adf{0}', parameters('pUser'))]",
+    "vLocation": "westeurope"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.DataFactory/factories",
+      "apiVersion": "2018-06-01",
+      "name": "[format('adf{0}', variables('vProjectName'))]",
+      "location": "[variables('vLocation')]",
+      "identity": {
+        "type": "SystemAssigned"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "[format('sa{0}', variables('vProjectName'))]",
+      "location": "[variables('vLocation')]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "Standard_LRS"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2019-06-01",
+      "name": "[format('{0}/default/dwh', format('sa{0}', variables('vProjectName')))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', format('sa{0}', variables('vProjectName')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2019-09-01",
+      "name": "[format('kv{0}', variables('vProjectName'))]",
+      "location": "[variables('vLocation')]",
+      "properties": {
+        "tenantId": "[subscription().tenantId]",
+        "sku": {
+          "name": "standard",
+          "family": "A"
+        },
+        "accessPolicies": [
+          {
+            "objectId": "[reference(resourceId('Microsoft.DataFactory/factories', format('adf{0}', variables('vProjectName'))), '2018-06-01', 'full').identity.principalId]",
+            "tenantId": "[subscription().tenantId]",
+            "permissions": {
+              "keys": "[parameters('keysPermissions')]",
+              "secrets": "[parameters('secretsPermissions')]"
+            }
+          }
+        ],
+        "networkAcls": {
+          "defaultAction": "Allow",
+          "bypass": "AzureServices"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.DataFactory/factories', format('adf{0}', variables('vProjectName')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "apiVersion": "2019-09-01",
+      "name": "[format('{0}/{1}', format('kv{0}', variables('vProjectName')), parameters('sercertNameSQLsa'))]",
+      "properties": {
+        "value": "[parameters('sercertValueSQLsa')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', format('kv{0}', variables('vProjectName')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2014-04-01",
+      "name": "[format('sqls{0}', variables('vProjectName'))]",
+      "location": "[variables('vLocation')]",
+      "properties": {
+        "administratorLogin": "SDCAdmin",
+        "administratorLoginPassword": "[parameters('sercertValueSQLsa')]"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[format('{0}/awlt', format('sqls{0}', variables('vProjectName')))]",
+      "location": "[variables('vLocation')]",
+      "sku": {
+        "name": "GP_S_Gen5_1"
+      },
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": 1073741824,
+        "sampleName": "AdventureWorksLT"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', format('sqls{0}', variables('vProjectName')))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[format('{0}/dwh', format('sqls{0}', variables('vProjectName')))]",
+      "location": "[variables('vLocation')]",
+      "sku": {
+        "name": "GP_S_Gen5_1"
+      },
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": 1073741824
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', format('sqls{0}', variables('vProjectName')))]"
+      ]
+    }
+  ]
+}

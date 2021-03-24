@@ -1,0 +1,80 @@
+/* @theme sdl-theme */
+
+:root {
+  width: 1600px;
+  height: 900px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 40px;
+  padding: 2rem;
+  background-color: #DEDBD9;
+  color: #4C4C4C;
+  background-image: url("simga_background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  backface-visibility: 10%;
+  }
+
+/* Styling page number */
+section::after {
+  /*
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
+*/
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  color: #0097CB;
+  background-color: #AFA8A2;
+  padding: 5px;
+  border-radius: 10px;
+
+}
+
+h2 {
+  font-size: 1.40rem;
+  padding: 5px;
+  border-radius: 10px;
+  font-style: italic;
+  background-color: #BBB2A9;
+  color: #0097CB;
+}
+h3 {
+  font-size: 1.15rem;
+  padding: 5px;
+  border-radius: 10px;
+  color: #0097CB;
+  background-color: #BBB2A9;
+}
+
+_invert{
+  background-color: #DEDBD9;
+  color: #4C4C4C;
+}
+
+section {
+  padding: 1rem;
+}
+
+header,
+footer {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+}
+
+header {
+  top: 50px;
+  text-align:  right;
+/*  background-color: #fff;*/
+}
+header.img{
+  background-color: #FFF;
+}
+footer {
+  font-size: 0.40rem;
+  bottom: 2rem;
+  text-align: left;
+/*  background-color: #fff; */
+}

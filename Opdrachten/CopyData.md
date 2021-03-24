@@ -23,6 +23,7 @@ Maak pipeline ```pl_alwt_adls_Customer```
 2. Configureer in de Srouces tab de data set Customer uit awlt
 3. Confirugeeer in de Sink tab de data set van Costomer naar adls
 
+* Gebruik Debug om de pipeline uit te voeren.
 
 ## Debug de pipeline
 

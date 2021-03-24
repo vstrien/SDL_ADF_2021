@@ -1,13 +1,20 @@
 # CopyData Customer
 
+# Context 
+Weekend en Delta load.
+
+
 ## Doel
 Doel van deze opdracht is het ophalen van de tabel Customer uit de awlt database en naar data lake te kopieren maar dan met eeen delta.
+
+
+
 
 ## Opdracht
 
 Maak een clone van pipeline ```pl_awlt_adls_object``` en noem deze ```pl_awlt_stg_object```.
 
-1. voeg een parameter toe aan de pipeline, ```strategy``` met als default ```Delta```
+1. voeg een parameter toe aan de pipeline, ```strategy``` met als default ```Full```
 2. Doe een data analyse op de bron tabel en onderzoek welke kolumn gebruikt kan worden voor het bepalen van de delta. Maar een query waarmee je deze delta kunen op halen.
 3. gebruik de parameter of een keuze te maken voor het de betreffende laat stratigy Full of Delta. Gebruik een ```If Condition``` activieit
     * bij de **Expression** maak een check en controleer of de pipeline een Full load moet uitvoeren op basis van de parameter van de pipeline.
