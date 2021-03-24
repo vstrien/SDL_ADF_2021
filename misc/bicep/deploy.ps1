@@ -14,10 +14,10 @@ bicep build ./$file.bicep # generates main.json
 #$var_User = 'bavo'
 #$var_User = 'luuk'
 #$var_User = 'alexander'
-$var_User = 'ppronk'
+$var_User = 'koos'
 
 $rgName = 'sdla2021adf-'+$var_User
-#New-AzResourceGroup -Name $rgName  -Location westeurope 
+New-AzResourceGroup -Name $rgName  -Location westeurope 
 
 
 $rgName 

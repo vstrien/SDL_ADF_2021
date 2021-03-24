@@ -1,65 +1,70 @@
-#  Azure data Factory
+# Module 1 - Pipelines & Orchestration
+
 ## Sigma Data Academy 2021
 
 ---
-# Module 1
-
-## Inleiding
+# Inleiding
 
 ## Data van a naar b
-Waar doen we het eigenlijk voor? 
+Waar doen we het eigenlijk voor?
 
-Belastig op operationle systemen verminderen. Sneller rapportages & dashboard. 
-![plaat]](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/media/modern-data-warehouse.png)
+* Belastig op operationle systemen verminderen
+* Snellere rapportages & dashboards
 
- Welke architectuur zijn gaan we hier nu neer zetten.
- bash processing architectuur.
+![architectuurplaat van het Modern Data Warehouse](img/modern-data-warehouse.png)
 
+* Is dit batch of real-time?
 
 ### ETL vs ELT
-- Extract
-- Trasform
-- Load
 
-Wat het verschil maakt is dat voor ETL het schema bekend moet zijn bij het laden van de data (*schema onWrite*). Bij ELT kan dat later, dit is ook wel bekend als (*schema onRead*).
+* Extract
+* Transform
+* Load
 
-Over het algemeen praten noemen wel het werk nog steeds ETL waarbij dus vaak genoeg ELT toepassen. Het geeft echter aan dat we hier in een proces zitten van het verplatsen en transformeren van data en in welke volgorde dat plaats vind is daarin minder belangrijk.
+Wat het verschil maakt is dat voor ETL het schema bekend moet zijn bij het laden van de data (*Schema on Write*). Bij ELT kan dat later, dit is ook wel bekend als (*Schema on Read*).
+
+Over het algemeen praten noemen wel het werk nog steeds ETL waarbij dus vaak genoeg ELT toepassen. Het geeft echter aan dat we hier in een proces zitten van het verplaatsen en transformeren van data en in welke volgorde dat plaats vind is daarin minder belangrijk.
 
 ## Waarom ETL
-Tegenwoordig kunnen we ook al een hoop data ophelen in PowerBI. Waarom zouden we dit dat ook nog met data factory moeten doen?
+
+Tegenwoordig kunnen we ook al een hoop data ophalen in Power BI. Waarom zouden we dit dat ook nog met data factory moeten doen?
+
 > Waarom zouden we dit allemaal doen?
 
--  Minimalen belasting op bron (operationel system)
+- Minimale belasting op bron (operationeel system)
 
-ELT biedt het voordeel dat we bronnen minimaal **belasten** voor BI. Als we 5 BI reports hebben dat allemaal **dezelfde** bron onsluiten dan wordt dat voor een bron systeem extra belastend. Als de dan ook nog een een veel voudt aan gebruikers zijn dan wordt het voor het bron stysteem te belasten.d
+ELT biedt het voordeel dat we bronnen minimaal **belasten** voor BI. Als we 5 BI reports hebben dat allemaal **dezelfde** bron onsluiten dan wordt dat voor een bron systeem extra belastend. Als de dan ook nog een een veelvoud aan gebruikers zijn dan wordt het voor het bron stysteem te belastend.
 
-- Performance 
+- Performance
 
-Door dat we met ADF een keer de bron belasten en daarna zo klaar zetten voor front-end rapporates en dashboard, worden deze ook vele malen sneller.
+Doordat we met ADF één keer de bron belasten en daarna zo klaar zetten voor front-end rapporates en dashboard, worden deze ook vele malen sneller.
 
-- Organisatie breed
+- Organisatiebreed
 
-Door business rulles op een plek uit te voeren hoevan we dat in de front-end niet meer toe te passen. 
+Door businessrules op één plek uit te voeren hoeven we dat in de front-end niet meer toe te passen.
 
 - Beheersbaarheid
 
-Als een van de business rulls zou veranderen, dan is het enkel in de ELT een aanpassing nodig. Dan hebben alle rapportages/dashboard daarna gelijk dezelfde business rulles. Zo hoe je niet elke report na te lopen of welke business rulles hier zijn toegepast en zo nodig moeten worden aangepast.
+Als een van de businessrules zou veranderen, dan is enkel in de ELT een aanpassing nodig. Dan hebben alle rapportages/dashboard daarna gelijk dezelfde businessrules. Zo hoe je niet elke report na te lopen of welke businessrules hier zijn toegepast en zo nodig moeten worden aangepast.
 
 ## ADF
+
 - Wat is Azure Dafa Factory (ADF)
 
 https://docs.microsoft.com/en-us/azure/data-factory/introduction
 
-Microsoft heeft met Azure Data Factory Versie 2 een stabiele services waarmee wij als Data Engineers data kunnnen verplaatsen en transformeren. Daarnaast biedt het ook de mogelijkheid om dit alles goed te Coordineren/Orchestration
+Microsoft heeft met Azure Data Factory Versie 2 (ADFv2) een stabiele dienst waarmee wij als Data Engineers data kunnnen verplaatsen en transformeren. Daarnaast biedt het ook de mogelijkheid om dit alles goed te coördineren -> Orchestration.
 
 ## ADF onderdelen
-Als we naar de basis concepte kijken vor ADF dan zie we de volgende onderdelen.
-- Pipelines
-- Activities
-- Datasets
-- Linked services
-- Data Flows
-- Integration Runtimes
+
+Als we naar de basisconcepten kijken voor ADF dan zie we de volgende onderdelen.
+
+* Pipelines
+* Activities
+* Datasets
+* Linked services
+* Data Flows
+* Integration Runtimes
 
 in deze module komen ze bijna allemaal langs. Data flows worden in module 2 behandeld. 
 
@@ -68,16 +73,18 @@ in deze module komen ze bijna allemaal langs. Data flows worden in module 2 beha
 ## Azure Dafa Factory (ADF)
 
 * Interface
-	* > **URL**: https://adf.azure.com/
+  * > **URL**: https://adf.azure.com/
 
 Demo laten zien hoe Azure data facotry er uit ziet!
 
 * Documentatie
-	* > **Docs**: https://docs.microsoft.com/en-us/azure/data-factory
+  * > **Docs**: https://docs.microsoft.com/en-us/azure/data-factory
 
 
 > - Git_repository
-> 	- *(ADF kan tegenwoordig de code opslaan in een git repository, daarvoor > hebben we een repository nodig in Gibhub of Azure Devops. Maar er een aan > voor deze training.)*
+> - *(ADF kan tegenwoordig de code opslaan in een git repository, daarvoor 
+>   hebben we een repository nodig in Gibhub of Azure Devops. Maar er een aan 
+   voor deze training.)*
 
 ---
 ## SQL configuratie
