@@ -67,8 +67,15 @@ Maak een pipeline met de naam `pl_alwt_adls_Customer`
 * Wanneer de uitvoer goed is gegaan, controleer dan in je Data Lake of er ook daadwerkelijk een bestand verschijnt.
 * Publiceer alle gemaakte resources.
 
-## Verdieping: Waarom Parquet?
+## En nu zelf!
 
-In onderstande video legt één van onze trainers uit waarom Parquet zo interessant is voor opslag op je Data Lake. Het is een eerste video in een serie van drie, waarin meer uitgelegd wordt over het direct kunnen uitvoeren van SQL-queries op je Data Lake.
+Maak nu de data-oplossing af door ook de andere tabellen binnen de `awlt` database via een pipeline in te laden naar je Data Lake.
 
-https://youtu.be/cG4u1z13xFs
+> ## Verdieping: Waarom Parquet?
+> 
+> Parquet is niet zo'n heel bekend bestandsformaat wanneer je het vergelijkt met bijvoorbeeld CSV of Excel. In Data Lakes wordt het echter veelvuldig gebruikt.
+> 
+> In onderstande video legt één van onze trainers uit waarom Parquet zo interessant is voor opslag op je Data Lake. Het is een eerste video in een serie van drie, waarin meer uitgelegd wordt over het direct kunnen uitvoeren van SQL-queries op je Data Lake.
+> 
+> <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/cG4u1z13xFs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+> 
