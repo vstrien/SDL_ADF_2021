@@ -6,7 +6,7 @@ Doel van deze opdracht is het ophalen van de tabel Customer uit de awlt database
 ## Opdracht
 
 Maak een Data set ```ds_awlt_Customer``` 
-- Kies azure sql databae
+- Kies azure sql database
 - Selecteer de linked sevices naar ```ls_sql_awlt```
 - Selecteer de table ```Customer```
 

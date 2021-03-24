@@ -17,16 +17,17 @@ Planning is globaal als volgt:
 * Dag 1:
   * Ochtend:
     * Module 1
-      * Lab: Linked Services (15 min.)
-      * Lab: Copy Data (30-45 min.)
-      * Lab: Copy Data voor meerdere tabellen (30 min.) --> doel: ervaren dat het suf werk is om dit telkens te herhalen
+      * [Lab: Linked Services (15 min.)](./opdrachten/module-01/01-linked-services.md)
+      * [Lab: Copy Data (30-45 min.)](./opdrachten/module-01/02-copy-data.md)
+      * [Lab: Copy Data voor meerdere tabellen (30 min.)](./opdrachten/module-01/03-copy-data-meerdere-tabellen.md)
+        * Doel: ervaren dat het suf werk is om dit telkens te herhalen
   * Middag:
     * Module 1 vervolg ("Stage loop")
-    * Stage Loop (3 uur)
+    * [Lab: Stage Loop (3 uur)](./opdrachten/module-01/04-copy-data-stg-loop.md)
 * Dag 2:
   * Module 1 vervolg (met name het lab "delta naar Parquet-files")
-    * Delta naar Parquet-files
-    * Vervolg-opdracht: delta naar SQL
+    * [Lab: Delta naar Parquet-files](./opdrachten/module-01/05-copy-data-delta.md)
+    * [Lab: Delta naar SQL](./opdrachten/module-01/06-copy-data-delta-stg-sql.md)
   * Module 2: Data Flows
 * Dag 3:
   * Module 3: Power Query ("prep")
