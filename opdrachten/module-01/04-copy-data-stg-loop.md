@@ -85,6 +85,7 @@ where
     and s.name <> 'dbo'
 ```
 
+9. Haal het vinkje bij **First row only** weg
 9. Klik nu op **Validate** om de pipeline te valideren.
    * Welke meldingen krijg je?
    * Waarom krijg je deze?
@@ -94,11 +95,34 @@ We hebben zojuist de **Dataset** gebruikt die ons een lijstje met tabellen aanle
 Om dit op te lossen zijn er twee opties:
 
 * Optie 1: We vullen een onzin-waarde in bij de parameters, bijvoorbeeld `FULL`. We gebruiken de parameter namelijk toch niet
-* Optie 2: We maken een aparte dataset aan, zónder parameters, specifiek voor het uitvragen van de benodigde tabellen. We zouden deze dataset kunnen laten definiëren door de bovenstaande query
+* Optie 2: We maken een aparte dataset aan, zónder parameters, specifiek voor het uitvragen van de benodigde tabellen.
 
 Kies zelf welke optie je hier het netst vindt: beide opties zijn mogelijk.
 
-- voeg een ForEach toe aan het canvas
-    - Laat deze foreach lopen over de output van de lookup.
-    - Klik de activiteit in de foreach open. 
-        - voeg hier een execute pipeline toe ```pl_awlt_adls_object``` een geef deze de juiste foreach item as parameters mee voor het uitvoeren van de pipeline.
+11. Probeer de pipeline uit met behulp van **Debug**, en bekijk de resultaten van de Lookup.
+
+![Bekijk de output van de Lookup activity](img/lookup-output.png)
+
+12. Als alles er tot nu toe goed uitziet, publiceer je de huidige pipeline.
+
+De **Lookup** activity heeft een zogenaamde *output*, die we zojuist bekeken hebben. Deze kunnen we laten gebruiken door latere *activities* binnen de pipeline, zolang deze een volgordelijkheid hebben. De volgorde van uitvoeren definiëren we in Azure Data Factory door "groen pijltje" te trekken tussen twee activities.
+
+De uitkomst van deze **Lookup** activity willen we nu gaan gebruiken in een ForEach-loop. Voor elke tabel die de ForEach-activity gevonden heeft, willen we de data gaan exporteren naar ons Data Lake.
+
+13. Voeg een ForEach activity toe aan het canvas
+    * Naam: fe_all_tables
+    * Verbind `lkp_all_tables` met `fe_all_tables`
+    * Stel onder het kopje **Settings** de **Items** van de ForEach in. Zorg ervoor dat de ForEach de *activity output* van `lkp_all_tables` gebruikt.
+13. Binnen het blauwe *ForEach*-blokje op je canvas is een grijs blokje met *Activities*. Klik binnen dit blokje op het potloodje
+
+Je krijgt nu een nieuw canvas, met bovenaan de indicatie ![pl_awlt_stg > fe_all_tables](img/breadcrumb-fe.png). Feitelijk heb je de ForEach-activity nu geopend, en kun je bepalen wát er moet gebeuren voor elke tabel.
+
+15. Voeg aan dit nieuwe canvas een **Execute Pipeline** activity toe
+    * naam: `exe_awlt_adls_object`
+    * **Invoked pipeline**: `pl_awlt_adls_object`
+    * **Parameters**:
+      * schema: gebruik *dynamic content* om de parameters te vullen
+      * wanneer je de *current item* aanklikt in het **Add dynamic content** paneel, krijg je de gehele rij
+      * Met behulp van een punt en de kolomnaam die in de SQL gedefinieerd is kun je specificeren welke kolom je nodig hebt.
+        ![hoe je een item uitleest](img/dynamic-column.gif)
+16. Publiceer en test de pipeline. Controleer in het Data Lake of de bestanden daadwerkelijk goed doorkomen.
