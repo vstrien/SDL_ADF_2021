@@ -113,6 +113,8 @@ De uitkomst van deze **Lookup** activity willen we nu gaan gebruiken in een ForE
     * Naam: fe_all_tables
     * Verbind `lkp_all_tables` met `fe_all_tables`
     * Stel onder het kopje **Settings** de **Items** van de ForEach in. Zorg ervoor dat de ForEach de *activity output* van `lkp_all_tables` gebruikt.
+    * De *output* kan niet direct gebruikt worden (dit is een quirk van hoe expression language werkt). Typ er `.value` achter om de inhoud van de output daadwerkelijk te gebruiken.
+    * **Items** bevat nu de expressie `@activity('lkp_all_tables').output.value`
 13. Binnen het blauwe *ForEach*-blokje op je canvas is een grijs blokje met *Activities*. Klik binnen dit blokje op het potloodje
 
 Je krijgt nu een nieuw canvas, met bovenaan de indicatie ![pl_awlt_stg > fe_all_tables](img/breadcrumb-fe.png). Feitelijk heb je de ForEach-activity nu geopend, en kun je bepalen wát er moet gebeuren voor elke tabel.
