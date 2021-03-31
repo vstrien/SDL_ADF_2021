@@ -26,11 +26,18 @@ De informatie over personen hebben we al op een Data Lake staan. Gelukkig komen 
 
 Ook hier geldt: incrementeel laden is niet ons eerste probleem, het gaat er vooral om dat we al deze bestanden netjes in één dataset krijgen.
 
+Gegevens om verbinding te maken (kies **Enter Manually** voor een nieuwe Linked Service hier)
+
+* URL: `https://sasdla2021adfkoos.dfs.core.windows.net/`
+* Storage account key: `AGGDPPu2p2U+1bjoWNf44BPnM+mipULklemvGP0svjl8T0u/haz6tqnyrkGvGz9+htFARxpLem3LUEM+JpSvvw==`
+
 ## Sales quota (Excel)
 
 De controllers hebben daarnaast een sales target voor de verschillende verkopers aangeleverd. In Excel 💁‍♂️.
 
 Deze sales quota horen bij de verkopers, én bij de regio's. Uiteindelijk zullen ze als een type 2 dimensie moeten worden ingeladen, maar de eerste zorg is om ze überhaupt in te laden.
+
+Bestand is te vinden op [salesquota.xlsx](./salesquota.xlsx), deze kun je uploaden naar je Data Lake om mee aan de slag te gaan.
 
 ## Informatie over producten (SQL Server Database - AW2019)
 
