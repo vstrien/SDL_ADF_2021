@@ -5,7 +5,7 @@ Goedemorgen! Deze casusdag zal een klein beetje anders verlopen dan andere casus
 Er staan globaal twee opdrachten klaar. Je kunt ze in principe beide oppakken: opdracht 1 zal een uur of twee in beslag nemen (mijn inschatting), met opdracht 2 kun je gerust de hele dag bezig zijn. Er zit echter veel ruimte in de opdracht over wat je wel en niet wilt doen.
 
 * [Opdracht 1: Inrichten Azure DevOps en CI/CD voor Azure Data Factory](./01-inrichten-devops.md)
-* [Opdracht 2: Inlezen in Data Factory, verkennen van nieuwe functionaliteit](./02-adf-inlezen.md)
+* [Opdracht 2: Inlezen in Data Factory, verkennen van nieuwe functionaliteit](./02-inladen-meer-data.md)
 
 De organisatie die vandaag centraal staat, heet *Wide World Importers*. Dit is opnieuw een Microsoft-casus, waarvan je een omschrijving kunt vinden op [Microsoft Docs: Wide World Importers sample](https://docs.microsoft.com/nl-nl/sql/samples/wide-world-importers-what-is?view=sql-server-ver15).
 
