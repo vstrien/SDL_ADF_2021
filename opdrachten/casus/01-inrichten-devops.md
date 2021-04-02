@@ -1,6 +1,6 @@
 # Inrichten van Azure DevOps voor ADF
 
-Wide World Importers is momenteel bezig met het verplaatsen van hun systemen naar Microsoft Azure. Als onderdeel daarvan willen ze graag gebruik gaan maken van Azure Data Factory. Het data-team heeft recent in een demo gezien dat dit erg eenvoudig moest zijn, en wil daarom kijken of dit aan de praat te krijgen is.
+Wide World Importers is momenteel bezig met het verplaatsen van hun systemen naar Microsoft Azure. Als onderdeel daarvan willen ze graag gebruik gaan maken van Azure DevOps voor ADF-ontwikkeling. Het data-team heeft recent in een demo gezien dat dit erg eenvoudig moest zijn, en wil daarom kijken of dit aan de praat te krijgen is.
 
 Om dit voor elkaar te krijgen, volgt hier een globaal stappenplan:
 
